@@ -15,40 +15,48 @@
     </nav>
   </header>
 
-  <main class="container">
-    <section class="hero surface">
-      <div class="profile-badge" aria-hidden="true">YN</div>
-
+  <main>
+    <section class="hero">
       <div class="hero-content">
-        <p class="eyebrow">Personal portfolio</p>
-        <h1>Hello, I'm Your Name</h1>
-        <p class="subtitle">Student | Developer | Designer</p>
+        <p class="eyebrow">Hello, I am</p>
+        <h1>Your Name</h1>
         <p>
-          Welcome to my portfolio website. I am interested in web development,
-          design, technology, and creative problem-solving.
+          A student, developer, and creative learner interested in web design,
+          programming, and building meaningful digital experiences.
         </p>
 
-        <button class="btn" type="button" onclick="showMessage()">Say Hello</button>
+        <div class="actions">
+          <a class="btn primary" href="activities.html">View Activities</a>
+          <button class="btn secondary" type="button" onclick="showMessage()">Contact Me</button>
+        </div>
         <p id="message" class="message" aria-live="polite"></p>
       </div>
+
+      <aside class="profile-card" aria-label="Profile summary">
+        <div class="profile-badge" aria-hidden="true">YN</div>
+        <h2>Your Name</h2>
+        <p>Web Developer</p>
+      </aside>
     </section>
 
-    <section class="surface">
-      <h2>About Me</h2>
-      <p>
-        I enjoy learning new skills and building simple, useful projects.
-        My goal is to improve my programming ability and create meaningful digital experiences.
-      </p>
-    </section>
+    <section class="summary-panel">
+      <article>
+        <h2>About Me</h2>
+        <p>
+          I enjoy learning new skills and building simple, useful projects.
+          My goal is to improve my programming ability and create meaningful digital experiences.
+        </p>
+      </article>
 
-    <section class="surface">
-      <h2>Skills</h2>
-      <div class="skills">
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>JavaScript</span>
-        <span>UI Design</span>
-      </div>
+      <article>
+        <h2>Skills</h2>
+        <div class="skills">
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>UI Design</span>
+        </div>
+      </article>
     </section>
   </main>
 
