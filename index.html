@@ -77,3 +77,68 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 질문 보내기</title>
+    <style>
+        /* 간단한 스타일링 */
+        body { font-family: sans-serif; padding: 20px; }
+        textarea { width: 100%; height: 100px; margin-bottom: 10px; }
+        button { padding: 10px 20px; background-color: #0070f3; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        #result { margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 5px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+
+    <h2>OpenAI에게 질문하기</h2>
+    <textarea id="userInput" placeholder="질문을 입력하세요..."></textarea> <br>
+    <button id="sendBtn">전송하기</button>
+
+    <h3>답변 결과:</h3>
+    <div id="result">여기에 결과가 표시됩니다.</div>
+
+    <script>
+        document.getElementById('sendBtn').addEventListener('click', async () => {
+            const userInput = document.getElementById('userInput').value;
+            const resultDiv = document.getElementById('result');
+
+            if (!userInput) {
+                alert('내용을 입력해주세요!');
+                return;
+            }
+
+            resultDiv.innerText = "생성 중입니다... 잠시만 기다려주세요.";
+
+            // ⚠️ [중요] 여기에 1단계에서 복사한 Make Webhook URL을 넣으세요!
+            const makeWebhookUrl = 'https://hook.us1.make.com/보유하신_고유_주소_경로'; 
+
+            try {
+                // Fetch API를 이용해 Make로 데이터를 POST 전송합니다.
+                const response = await fetch(makeWebhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        prompt: userInput // Make가 인식할 데이터 key 이름입니다.
+                    }), 
+                });
+
+                if (response.ok) {
+                    // 4단계(Webhook Response)까지 설정했다면 받아온 텍스트를 화면에 보여줍니다.
+                    const data = await response.text();
+                    resultDiv.innerText = data;
+                } else {
+                    resultDiv.innerText = "전송 실패 (에러 코드: " + response.status + ")";
+                }
+            } catch (error) {
+                console.error('에러 발생:', error);
+                resultDiv.innerText = "서버 연결에 실패했습니다.";
+            }
+        });
+    </script>
+</body>
+</html>
